@@ -140,7 +140,7 @@ func set(cmd *cobra.Command, args []string) error {
 		return err
 	}
 	return wrap(db, false, func(tx *badger.Txn) error {
-		return tx.Set(k, bts)
+		return tx.Set(k, []byte(strings.Trim(string(bts), "\r\n")))
 	})
 }
 
